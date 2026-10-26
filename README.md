@@ -162,7 +162,7 @@ Los notebooks en `notebooks/` permiten reproducir todo el análisis visual:
 jupyter notebook notebooks/analisis_tsp.ipynb
 ```
 
-Hay un notebook por problema: `analisis_knapsack`, `analisis_tsp`, `analisis_vrp`, `analisis_flowshop`, `analisis_jobshop`.
+Hay un notebook por problema: `analisis_knapsack`, `analisis_tsp`, `analisis_vrp`, `analisis_flowshop`, `analisis_jobshop`. Leen `results/tabla_<problema>.csv` y las corridas de `output/`, y guardan sus gráficos en `notebooks/figuras/`. No modifican las figuras del paper.
 
 ---
 
@@ -187,6 +187,18 @@ cd paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex ma
 ```
 
 O bien, subir la carpeta `paper/` a [Overleaf](https://overleaf.com).
+
+| Documento | Fuente | PDF incluido | Cómo compilar |
+|---|---|---|---|
+| Paper IEEE (español) | `paper/main.tex` | `paper/main.pdf` | El comando de arriba |
+| Artículo ECP 2026 (inglés) | `PAPER ECP 2026/main.tex` | `PAPER ECP 2026/main.pdf` | Igual que el paper. Usa la clase de MDPI, que necesita TeX Live completo (por ejemplo, el paquete `lastpage`) u Overleaf |
+| Artículo EXPOTIC | `EXPOTIC/articulo/articulo.tex` | `EXPOTIC/articulo/Art-Triple Enfoque Resolutivo.pdf` | Igual que el paper |
+| Tesis | `TESIS/tesis.tex` | `TESIS/tesis.pdf` | `cd TESIS && ./compilar.sh` (ver `TESIS/README.md`) |
+
+### Versiones anteriores incluidas
+
+- `abstract_ecp2026.pdf` es el resumen enviado a ECP 2026. Reporta un GAP global de 6,22 % → 3,06 % porque, en ese momento, el flowshop se había corrido con otras instancias. Después se repitió con las instancias originales de Taillard, y las cifras definitivas son las de este README y de los artículos: 6,50 % → 3,40 %.
+- El afiche y las presentaciones de `EXPOTIC/` son de una etapa anterior del análisis. Allí se atribuye la mayor parte de la mejora a la memoria de frecuencia y la penalización. El análisis final (paper, artículo ECP y tesis) concluye que el tipo de vecindad pesa al menos tanto como la memoria, y que los niveles no aíslan cada mecanismo por separado.
 
 ---
 

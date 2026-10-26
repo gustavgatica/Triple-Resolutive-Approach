@@ -29,9 +29,7 @@ notebooks/.ipynb_checkpoints/
 *.fls
 *.fdb_latexmk
 
-# El PDF de la tesis se genera con TESIS/compilar.bat (o compilar.sh).
-# No se versiona: main.pdf y el afiche sí, porque son insumos, no salidas.
-TESIS/tesis.pdf
+# TESIS/tesis.pdf se versiona: es la versión entregada del documento.
 
 # Copia de trabajo del paper (la que se envia por correo). El insumo real de
 # la tesis es paper/main.pdf; este duplicado es una salida, no se versiona.
@@ -39,3 +37,7 @@ paper/main_latest_version.pdf
 
 # macOS
 .DS_Store
+
+# Figuras que generan los notebooks y PDF de compilaciones locales
+notebooks/figuras/
+EXPOTIC/articulo/articulo.pdf
