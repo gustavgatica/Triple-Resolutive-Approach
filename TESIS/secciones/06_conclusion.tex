@@ -1,0 +1,143 @@
+% =======================================================================
+\chapter{Conclusión}
+\label{cap:conclusion}
+% =======================================================================
+
+\section{El trabajo realizado}
+
+El trabajo partió de una brecha concreta: la literatura sobre Búsqueda Tabú
+compara familias de metaheurísticas o propone variantes especializadas, pero
+rara vez aísla la contribución de los mecanismos internos de TS sobre problemas
+heterogéneos. Para cerrarla se construyó un diseño factorial completo —cinco
+problemas por tres niveles de TS, quince módulos, 360 experimentos— y se
+publicó íntegramente como repositorio reproducible.
+
+El resultado son tres productos complementarios, distintos en formato pero
+derivados del mismo código:
+
+\begin{enumerate}
+  \item \textbf{El repositorio} (Capítulo~\ref{cap:repositorio}): quince
+    implementaciones de Búsqueda Tabú, la infraestructura de orquestación,
+    los modelos exactos de verificación y los resultados crudos de las 360
+    corridas.
+  \item \textbf{El artículo} (Capítulo~\ref{cap:paper}): el análisis formal
+    en formato IEEE de conferencia.
+  \item \textbf{El afiche} (Capítulo~\ref{cap:afiche}): la comunicación del
+    trabajo en EXPOTIC UNAB 2026.
+\end{enumerate}
+
+\section{Los hallazgos}
+
+\subsection{La progresión funciona, pero no de forma uniforme}
+
+El GAP global promedio cae de \SI{6.50}{\percent} en TS-Básico a
+\SI{4.00}{\percent} en TS-Intermedio y \SI{3.40}{\percent} en TS-Avanzado:
+una reducción del \SI{48}{\percent} relativo entre los extremos. La
+progresión es monótona en el agregado, lo que confirma la hipótesis de
+partida.
+
+El promedio, sin embargo, es engañoso. Desagregado por problema, casi toda la
+ganancia proviene de CVRP (\SI{19.22}{\percent} $\rightarrow$
+\SI{6.38}{\percent}, un \SI{67}{\percent} de reducción relativa), mientras
+que en Flowshop los tres niveles quedan en torno al \SI{1.7}{\percent} y
+la diferencia entre ellos carece de significado práctico.
+
+\subsection{Los mecanismos rinden donde el espacio de búsqueda lo permite}
+
+La heterogeneidad tiene una explicación estructural. Los mecanismos de
+memoria de largo plazo —frecuencia, penalización adaptativa, diversificación
+informada— sirven para escapar de óptimos locales; su valor depende de la existencia de óptimos locales de donde escapar. En Flowshop, la vecindad
+de \emph{swap} adyacente limita lo que cualquier nivel de TS puede lograr
+sobre la solución de la heurística NEH: los tres niveles terminan
+prácticamente en el mismo GAP. En Knapsack, el \emph{greedy} por ratio
+deja la solución tan cerca del óptimo que el margen de mejora es casi nulo.
+
+CVRP~\cite{laporte1992vehicle} y Job Shop, en cambio, tienen espacios amplios y
+accidentados, y es allí donde la memoria de largo plazo justifica su costo.
+
+\subsection{El primer salto es el más rentable}
+
+TS-Intermedio captura 2.50 puntos porcentuales de la mejora total;
+TS-Avanzado añade solo 0.60 puntos adicionales. Considerando que
+TS-Avanzado requiere aproximadamente $3.9\times$ el tiempo de cómputo de
+TS-Básico, la relación costo-beneficio favorece claramente al nivel
+intermedio en escenarios con restricción de tiempo. Este es, probablemente,
+el hallazgo de mayor valor práctico del trabajo.
+
+\subsection{La perturbación estructural importa}
+
+El reinicio \emph{double-bridge} (4-opt)~\cite{lin1973effective} de TS-Avanzado
+produjo la mayor mejora individual observada: \SI{2.21}{\percent} de reducción
+en \texttt{kroA100}. Perturbar de forma informada la mejor solución conocida
+resultó más eficaz que ampliar la lista tabú o alargar la búsqueda.
+
+\section{Sobre el método}
+
+Dos aspectos metodológicos merecen destacarse por encima de los resultados
+numéricos.
+
+El primero: el GAP se calcula contra \textbf{valores de referencia
+verificables}. Los BKS de Knapsack se comprueban con programación dinámica,
+y las instancias de Flowshop se regeneran desde las semillas publicadas por
+Taillard, con sus \emph{makespan} óptimos como BKS. Con referencias de este
+tipo ningún GAP puede ser negativo, y así ocurre en los 360 experimentos.
+
+El segundo: la \textbf{validación sobre cinco semillas} resultó
+indispensable. Con una sola semilla, varias de las diferencias entre niveles
+habrían sido indistinguibles del ruido. La baja desviación estándar
+observada es lo que permite afirmar que la progresión es real.
+
+\section{Limitaciones}
+
+El trabajo tiene fronteras claras, que conviene enunciar sin atenuantes:
+
+\begin{itemize}
+  \item \textbf{Criterio de parada por iteraciones.} Igualar iteraciones y no
+    tiempo de CPU hace que las comparaciones de costo sean aproximadas. Una
+    comparación estricta requeriría presupuesto temporal fijo.
+  \item \textbf{Escala moderada.} Las 24 instancias van de 50 a 150
+    elementos. Nada de lo aquí observado permite afirmar cómo escalan los
+    mecanismos a instancias de orden de magnitud superior.
+  \item \textbf{Un solo diseño por nivel.} Cada nivel es una configuración
+    concreta, no una familia. Un TS-Básico mejor ajustado podría acercarse a
+    TS-Intermedio.
+  \item \textbf{Penalización simple.} La función de penalización por
+    frecuencia emplea normalización $\phi/t$; esquemas más elaborados —por
+    ejemplo, normalización por tamaño de vecindario— podrían mejorar la
+    estabilidad.
+  \item \textbf{Hardware limitado.} Los recursos disponibles condicionaron el
+    número de iteraciones en las instancias mayores de CVRP y Job Shop.
+\end{itemize}
+
+\section{Trabajo futuro}
+
+\begin{itemize}
+  \item Sustituir el criterio de parada por presupuesto de tiempo de CPU fijo
+    y repetir la comparación.
+  \item Incorporar modelos exactos MILP para las instancias menores y
+    contrastar contra cotas inferiores demostradas.
+  \item Implementar un cuarto nivel con Búsqueda Tabú poblacional
+    (trayectorias paralelas).
+  \item Añadir instancias de mayor escala —TSP con más de 500 ciudades, CVRP
+    con más de 500 clientes— y medir el escalado del GAP.
+  \item Extender el repositorio a otros problemas: coloración de grafos,
+    mochila multidimensional.
+  \item Enriquecer la vecindad de Job Shop con movimientos sobre el grafo de
+    disyunción~\cite{balas1998one}, dado que es el problema donde los GAP se
+    mantienen más altos.
+  \item Automatizar la generación de figuras desde los cuadernos Jupyter e
+    integrarla a la compilación mediante \texttt{latexmk}.
+\end{itemize}
+
+\section{Cierre}
+
+La arquitectura progresiva de Búsqueda Tabú validada en este trabajo permite
+observar el impacto incremental de cada mecanismo metaheurístico en lugar de
+tratarlos como una caja única. El hallazgo central no está en la victoria de la configuración avanzada —eso era esperable— sino \emph{cuánto} gana, \emph{dónde} gana
+y \emph{a qué costo}: la mayor parte de la mejora se obtiene en el primer
+salto de complejidad, se concentra en los problemas de espacio de búsqueda
+amplio, y el nivel más sofisticado cobra casi cuatro veces el tiempo por cerca
+de la mitad del GAP.
+
+El código publicado permite que estas afirmaciones se verifiquen, se
+cuestionen y se extiendan; esa es, en definitiva, la razón por la cual el repositorio —y no el artículo— es el producto principal del trabajo.

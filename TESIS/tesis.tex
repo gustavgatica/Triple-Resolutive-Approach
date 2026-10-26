@@ -1,0 +1,215 @@
+% =======================================================================
+%  TESIS — Triple Enfoque Resolutivo
+%  Benjamín Peña Díaz — Universidad Andrés Bello
+%
+%  Compilar:  pdflatex tesis.tex  (×2, para el índice)
+%  Requiere:  paper/main.pdf y EXPOTIC/afiche-triple-enfoque-resolutivo.pdf
+% =======================================================================
+\documentclass[11pt,a4paper,oneside]{report}
+
+%% --- Codificación e idioma ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%% babel-spanish rotula las tablas como «Cuadro»; el texto del documento y la
+%% convención en ingeniería usan «Tabla». Se unifica aquí.
+\addto\captionsspanish{%
+  \renewcommand{\tablename}{Tabla}%
+  \renewcommand{\listtablename}{Índice de tablas}%
+}
+
+%% --- Matemáticas ---
+\usepackage{amsmath,amssymb}
+\newcommand{\NP}{\ensuremath{\mathcal{NP}}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+%% --- Tablas y figuras ---
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{siunitx}
+\sisetup{round-mode=places, round-precision=2}
+\graphicspath{{figuras/}{../paper/figuras/}}
+
+%% --- Listas ---
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, parsep=0pt}
+
+%% --- Márgenes ---
+\usepackage[top=2.5cm,bottom=2.5cm,left=3cm,right=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+%% --- Rutas y nombres de archivo largos en \texttt: permitir división ---
+%% Sin esto, cadenas como output/{instancia}_{algoritmo}_{fecha}/ desbordan
+%% el margen derecho.
+\makeatletter
+\let\origttfamily\ttfamily
+\renewcommand{\ttfamily}{\origttfamily\hyphenchar\font=`\-\relax}
+\makeatother
+\setlength{\emergencystretch}{3em}
+
+%% --- Prolijidad de página ---
+%% Sin esto rige el default de LaTeX (150), que tolera que la primera o la
+%% última línea de un párrafo queden solas al cambiar de página.
+\widowpenalty=10000         % última línea de un párrafo sola al inicio de página
+\clubpenalty=10000          % primera línea de un párrafo sola al final de página
+\displaywidowpenalty=10000  % ídem en torno a ecuaciones en display
+\brokenpenalty=10000        % no partir una palabra con guion entre dos paginas
+
+%% --- Inserción de PDFs externos (paper y afiche) ---
+\usepackage{pdfpages}
+
+%% --- Diagramas (flujo de ejecución y UML) ---
+\usepackage{tikz}
+\usetikzlibrary{babel,positioning,shapes.geometric,shapes.multipart,arrows.meta}
+
+%% --- Código fuente ---
+\usepackage{xcolor}
+\usepackage{listings}
+\definecolor{codeverde}{rgb}{0.00,0.45,0.16}
+\definecolor{codegris}{rgb}{0.45,0.45,0.45}
+\definecolor{codemorado}{rgb}{0.50,0.00,0.40}
+\definecolor{codefondo}{rgb}{0.97,0.97,0.97}
+\definecolor{codeborde}{rgb}{0.80,0.80,0.80}
+
+\lstdefinestyle{python}{
+  language=Python,
+  backgroundcolor=\color{codefondo},
+  basicstyle=\ttfamily\scriptsize,
+  commentstyle=\color{codeverde}\itshape,
+  keywordstyle=\color{codemorado}\bfseries,
+  stringstyle=\color{codegris},
+  numberstyle=\tiny\color{codegris},
+  numbers=left,
+  numbersep=8pt,
+  frame=single,
+  rulecolor=\color{codeborde},
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false,
+  tabsize=4,
+  captionpos=b,
+  columns=flexible,
+  literate=%
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ü}{{\"u}}1 {¿}{{?`}}1 {¡}{{!`}}1
+}
+\lstset{style=python}
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Índice de códigos}
+
+%% --- Marcador para pendientes ---
+\newcommand{\pendiente}[1]{%
+  \begin{center}
+  \fcolorbox{red!60}{red!5}{%
+    \parbox{0.9\linewidth}{\small\textbf{[PENDIENTE]}~#1}}
+  \end{center}}
+
+%% --- Bibliografía ---
+%% Se reutiliza el .bib del paper: una sola fuente de verdad para las
+%% referencias de todo el trabajo.
+\usepackage{cite}
+
+%% --- Hipervínculos (cargar al final) ---
+\usepackage[hidelinks,bookmarks=true]{hyperref}
+
+% =======================================================================
+\begin{document}
+
+% ------------------------- PORTADA -------------------------------------
+\begin{titlepage}
+\centering
+\vspace*{0.8cm}
+
+% Logo institucional oficial (UNAB + Facultad de Ingeniería), tomado de la
+% plantilla oficial de EXPOTIC. Corrección revisión 25-09-26.
+\includegraphics[height=2.6cm]{logo_unab_ingenieria.png}\\[0.9cm]
+
+{\large\scshape Universidad Andrés Bello}\\[0.25cm]
+{\large Facultad de Ingeniería}\\[0.15cm]
+{\large Escuela de Ingeniería Informática}\\[1.5cm]
+
+\rule{\linewidth}{0.5pt}\\[0.55cm]
+{\LARGE\bfseries Triple Enfoque Resolutivo}\\[0.45cm]
+{\large Un Repositorio de Cinco Problemas de Optimización Combinatoria
+con Soluciones Exactas y Metaheurísticas}\\[0.4cm]
+\rule{\linewidth}{0.5pt}\\[1.8cm]
+
+{\large\textbf{Autor}}\\[0.15cm]
+{\large Benjamín Peña Díaz}\\[0.9cm]
+
+{\large\textbf{Profesor guía}}\\[0.15cm]
+{\large Gustavo Gatica}\\
+{\small Universidad Andrés Bello}\\[0.7cm]
+
+{\large\textbf{Profesor co-guía}}\\[0.15cm]
+{\large Rodrigo Linfati}\\
+{\small Universidad del Bío-Bío}
+
+\vfill
+{\large Santiago, Chile --- \the\year}
+\vspace*{0.5cm}
+
+\end{titlepage}
+
+% ------------------------- DERECHOS DE AUTOR ---------------------------
+\thispagestyle{empty}
+\vspace*{\fill}
+\noindent\copyright~\the\year, Benjamín Peña Díaz.
+
+\medskip
+\noindent Se autoriza la reproducción total o parcial de este documento, con
+fines académicos, por cualquier medio o procedimiento, siempre que se incluya
+la cita bibliográfica que acredita al trabajo y a su autor.
+\clearpage
+
+% ------------------------- PRELIMINARES --------------------------------
+\pagenumbering{roman}
+
+\input{secciones/00_agradecimientos}
+\input{secciones/00_declaracion_ia}
+\input{secciones/00_resumen}
+
+% ------------------------- ÍNDICES -------------------------------------
+\tableofcontents
+
+% Los tres listados fluyen seguidos en lugar de ocupar una página cada uno.
+\begingroup
+  \let\cleardoublepage\relax
+  \let\clearpage\relax
+  \listoffigures
+  \vspace{1.2em}
+  \listoftables
+  \vspace{1.2em}
+  \lstlistoflistings
+\endgroup
+
+\input{secciones/00_siglas}
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+% ------------------------- CUERPO --------------------------------------
+\input{secciones/01_motivo}
+\input{secciones/02_metodologia}
+\input{secciones/03_paper}
+\input{secciones/04_afiche}
+\input{secciones/05_repositorio}
+\input{secciones/06_conclusion}
+
+% ------------------------- BIBLIOGRAFÍA --------------------------------
+% Se reutiliza el .bib del paper. Compilar con:
+%   pdflatex tesis  →  bibtex tesis  →  pdflatex tesis  →  pdflatex tesis
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliografía}
+\bibliographystyle{ieeetr}
+\bibliography{../paper/referencias}
+
+\end{document}

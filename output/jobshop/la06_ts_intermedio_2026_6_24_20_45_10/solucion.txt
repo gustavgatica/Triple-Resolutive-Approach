@@ -1,0 +1,8 @@
+Problema : jobshop
+Instancia: la06
+Algoritmo: ts_intermedio
+Valor    : 926
+BKS      : 926
+GAP      : 0.0000%
+
+Permutación: 3 -> 2 -> 6 -> 5 -> 9 -> 13 -> 0 -> 12 -> 10 -> 7 -> 11 -> 8 -> 4 -> 14 -> 1

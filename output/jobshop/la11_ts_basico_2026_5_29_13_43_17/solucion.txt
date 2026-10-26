@@ -1,0 +1,1 @@
+la11 ts_basico valor=1259 GAP=3.0278%

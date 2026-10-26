@@ -1,0 +1,12 @@
+# Dependencias del proyecto — Triple Enfoque Resolutivo
+# Versiones exactas para garantizar reproducibilidad
+
+numpy==2.2.6
+pandas==2.3.3
+matplotlib==3.10.8
+tqdm==4.68.1
+scipy==1.15.3
+
+# Para ejecutar los notebooks de análisis
+jupyter>=1.0.0
+ipykernel>=6.0.0

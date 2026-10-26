@@ -1,0 +1,253 @@
+% -----------------------------------------------------------------------
+\section{Diseño Experimental}
+\label{sec:metodologia}
+
+Esta sección describe el diseño experimental del estudio. Primero se
+presenta la organización del repositorio y su arquitectura de software;
+luego, las instancias de prueba, las heurísticas constructivas que generan
+las soluciones iniciales y la métrica con que se compara el rendimiento
+de los tres niveles de TS.
+
+\subsection{Repositorio y estructura de código}
+
+El repositorio está organizado en las siguientes carpetas principales:
+
+\begin{itemize}
+  \item \texttt{instances/} — instancias TSPLIB en formato estándar
+    (extensiones \texttt{.kp}, \texttt{.tsp}, \texttt{.vrp}, \texttt{.fsp},
+    \texttt{.jss}).
+  \item \texttt{tabu\_search/\{problema\}/} — quince módulos Python,
+    uno por combinación (problema, nivel), con interfaz uniforme
+    \texttt{solve(instance\_data, \ldots) → dict}.
+  \item \texttt{src/} — orquestador (\texttt{main.py}), cargador de
+    instancias (\texttt{loader.py}), calculadora de métricas
+    (\texttt{metrics.py}), generador de informes (\texttt{reporter.py})
+    y utilidades (\texttt{utils/}).
+  \item \texttt{models/} — modelos exactos de referencia: formulaciones en
+    AMPL y solvers en Python (programación dinámica para Knapsack y
+    Held-Karp~\cite{held1962dynamic} para TSP).
+  \item \texttt{output/\{problema\}/} — resultados de cada experimento.
+  \item \texttt{notebooks/} — cuadernos Jupyter para análisis y figuras.
+  \item \texttt{paper/} — este documento y sus recursos.
+\end{itemize}
+
+La Figura~\ref{fig:arquitectura_repo} esquematiza la arquitectura y el
+flujo de datos entre estos componentes.
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[
+      node distance=0.5cm and 0.95cm,
+      comp/.style={draw, rounded corners=2pt, align=center,
+                   font=\scriptsize\ttfamily, minimum width=2.15cm,
+                   minimum height=0.85cm, fill=gray!8},
+      etapa/.style={font=\scriptsize\itshape, text=gray!90!black},
+      fl/.style={->, >=stealth, thick}]
+    % Fila 1: entrada y núcleo
+    \node[comp] (inst) {instances/\\{\tiny .kp .tsp .vrp .fsp .jss}};
+    \node[comp, right=of inst] (src) {src/\\{\tiny main.py, loader.py}};
+    \node[comp, right=of src] (ts) {tabu\_search/\\{\tiny 15 módulos solve()}};
+    % Fila 2: salida y análisis
+    \node[comp, below=of ts] (out) {output/\\{\tiny resultado.json}};
+    \node[comp, left=of out] (rep) {src/\\{\tiny metrics.py, reporter.py}};
+    \node[comp, left=of rep] (nb) {notebooks/ y\\paper/\\{\tiny tablas y figuras}};
+    % Flujos
+    \draw[fl] (inst) -- node[above, etapa]{carga} (src);
+    \draw[fl] (src) -- node[above, etapa]{ejecuta} (ts);
+    \draw[fl] (ts) -- node[right, etapa]{guarda} (out);
+    \draw[fl] (out) -- node[above, etapa]{agrega} (rep);
+    \draw[fl] (rep) -- node[above, etapa]{genera} (nb);
+  \end{tikzpicture}
+  \caption{Arquitectura del repositorio y flujo de datos: el orquestador
+           carga las instancias, ejecuta los quince módulos de TS y
+           persiste los resultados, desde los cuales se generan métricas,
+           tablas y figuras.}
+  \label{fig:arquitectura_repo}
+\end{figure}
+
+Todos los módulos TS exponen la misma interfaz de devolución:
+\texttt{\{value, solution, iterations, time\_s, history\}}, interfaz uniforme
+que permite al orquestador tratar los cinco problemas de forma homogénea.
+La Figura~\ref{fig:uml_clases} presenta el diagrama de clases UML de los
+módulos: \texttt{runner.py} depende únicamente de la interfaz
+\texttt{solve()}, que los quince módulos de TS realizan y que se carga
+mediante importación dinámica.
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[
+      clase/.style={draw, rectangle split, rectangle split parts=2,
+                    align=left, font=\scriptsize\ttfamily, fill=gray!8,
+                    inner sep=2.5pt, text width=3.75cm, anchor=north},
+      dep/.style={->, >=stealth, dashed},
+      real/.style={-{Triangle[open, length=5pt, width=6pt]}, dashed},
+      rot/.style={font=\tiny\itshape, text=gray!90!black}]
+    % Columna izquierda: orquestación y algoritmos
+    \node[clase] (main) at (0,0)
+      {\centering «módulo»\\\textbf{src/main.py}
+       \nodepart{two}+ main()\\+ run\_all(seeds)};
+    \node[clase] (run) at (0,-1.75)
+      {\centering «módulo»\\\textbf{src/runner.py}
+       \nodepart{two}+ run\_experiment(\\\ \ problema, instancia,\\\ \ algoritmo, seed): dict};
+    \node[clase] (ifz) at (0,-3.9)
+      {\centering «interface»\\\textbf{SolverTS}
+       \nodepart{two}+ solve(instance\_data,\\\ \ ..., seed): dict};
+    \node[clase] (impl) at (0,-5.75)
+      {\centering «módulo»\\\textbf{tabu\_search/\{problema\}/}
+       \nodepart{two}ts\_basico.py\\ts\_intermedio.py\\ts\_avanzado.py};
+    % Columna derecha: servicios
+    \node[clase] (rep) at (4.4,0)
+      {\centering «módulo»\\\textbf{src/reporter.py}
+       \nodepart{two}+ generate\_report()\\\mbox{}};
+    \node[clase] (load) at (4.4,-1.75)
+      {\centering «módulo»\\\textbf{src/loader.py}
+       \nodepart{two}+ load\_instance(ruta):\\\ \ dict\\\mbox{}};
+    \node[clase] (met) at (4.4,-3.9)
+      {\centering «módulo»\\\textbf{src/metrics.py}
+       \nodepart{two}+ gap(valor, bks, min)\\+ summarize(...): dict};
+    % Dependencias y realización
+    \draw[dep] (main) -- (rep);
+    \draw[dep] (main) -- (run);
+    \draw[dep] (run) -- (load);
+    \draw[dep] (run) -- node[right, rot]{importación dinámica} (ifz);
+    \draw[dep] (run.south east) -- (met.north west);
+    \draw[real] (impl) -- (ifz);
+  \end{tikzpicture}
+  \caption{Diagrama de clases UML de los módulos del repositorio. Las
+           flechas punteadas indican dependencia; la flecha con triángulo
+           hueco, la realización de la interfaz \texttt{solve()} por los
+           quince módulos de TS.}
+  \label{fig:uml_clases}
+\end{figure}
+
+\subsubsection*{Estructura de la carpeta de salida}
+
+Cada ejecución genera un directorio propio dentro de
+\texttt{output/\{problema\}/} con el patrón
+\texttt{\{instancia\}\_\{algoritmo\}\_\{fecha\}/}, que contiene
+\texttt{resultado.json} (métricas: valor, GAP, iteraciones, tiempo e
+historial de convergencia) y \texttt{solucion.txt} (la mejor solución
+encontrada en formato legible).
+En la raíz de \texttt{output/} se generan además las tablas agregadas
+(\texttt{tabla\_\{problema\}.csv}, \texttt{tabla\_consolidada.csv}) y el
+script \texttt{regenerar\_figuras.py} que reconstruye las figuras del
+artículo:
+
+\begin{figure}[H]
+\footnotesize
+\begin{verbatim}
+output/
+|- tsp/
+|  |- kroA100_ts_avanzado_<fecha>/
+|  |  |- resultado.json
+|  |  `- solucion.txt
+|  `- ...
+|- knapsack/  vrp/  flowshop/  jobshop/
+|- tabla_tsp.csv ... tabla_consolidada.csv
+`- regenerar_figuras.py
+\end{verbatim}
+\vspace{-0.5em}
+\caption{Estructura de la carpeta de salida \texttt{output/}.}
+\label{fig:output_tree}
+\end{figure}
+
+\subsection{Instancias de prueba}
+
+La Tabla~\ref{tab:instancias} lista las 24 instancias empleadas.
+Se eligieron instancias de tamaño moderado de TSPLIB para mantener tiempos
+de ejecución razonables —del orden de uno a dos minutos por experimento—
+sin perder representatividad.
+
+\begin{table}[tb]
+\caption{Instancias de prueba}
+\label{tab:instancias}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrl}
+\toprule
+\textbf{Problema} & \textbf{Instancia} & \textbf{Tamaño} &
+  \textbf{BKS} & \textbf{Fuente} \\
+\midrule
+\multirow{5}{*}{Knapsack}
+  & knapPI\_11 & 100 ítem. & 3950  & Pisinger~\cite{pisinger2005hard} \\
+  & knapPI\_12 & 100 ítem. & 3752  & \\
+  & knapPI\_13 & 100 ítem. & 3468  & \\
+  & knapPI\_14 & 100 ítem. & 3856  & \\
+  & knapPI\_15 & 100 ítem. & 3732  & \\
+\midrule
+\multirow{5}{*}{TSP}
+  & eil51      &  51 ciud. &  426  & TSPLIB~\cite{reinelt1991tsplib} \\
+  & berlin52   &  52 ciud. & 7542  & \\
+  & eil76      &  76 ciud. &  538  & \\
+  & kroA100    & 100 ciud. & 21282 & \\
+  & kroB100    & 100 ciud. & 22141 & \\
+\midrule
+\multirow{4}{*}{CVRP}
+  & vrpnc1     &  50 clien.&  524  & Christofides~\cite{christofides1979vehicle} \\
+  & vrpnc2     &  75 clien.&  835  & \\
+  & vrpnc3     & 100 clien.&  826  & \\
+  & vrpnc4     & 150 clien.& 1028  & \\
+\midrule
+\multirow{5}{*}{Flowshop}
+  & ta001      & 20$\times$5  & 1278  & Taillard~\cite{taillard1993benchmarks} \\
+  & ta011      & 20$\times$10 & 1582  & \\
+  & ta021      & 20$\times$20 & 2297  & \\
+  & ta031      & 50$\times$5  & 2724  & \\
+  & ta041      & 50$\times$10 & 2991  & \\
+\midrule
+\multirow{5}{*}{Job Shop}
+  & ft10       & 10$\times$10 &  930  & Fisher\&Thompson~\cite{fisher1963probabilistic} \\
+  & la01       &  10$\times$5 &  666  & Lawrence~\cite{lawrence1984resource} \\
+  & la06       &  15$\times$5 &  926  & \\
+  & la11       &  20$\times$5 & 1222  & \\
+  & la21       &  15$\times$10& 1046  & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Soluciones iniciales}
+
+Cada problema emplea una heurística constructiva para generar la solución
+inicial:
+
+\begin{itemize}
+  \item \textbf{Knapsack}: greedy por ratio ganancia/peso decreciente.
+  \item \textbf{TSP}: vecino más cercano desde el nodo 0.
+  \item \textbf{CVRP}: ahorros de Clarke-Wright~\cite{clarke1964scheduling}.
+  \item \textbf{Flowshop}: heurística NEH~\cite{nawaz1983heuristic}.
+  \item \textbf{Job Shop}: decodificador de Giffler-Thompson con prioridad
+    por tiempo total de procesamiento decreciente.
+\end{itemize}
+
+\subsection{Métricas}
+
+El rendimiento se mide con el \emph{GAP} respecto al mejor valor conocido
+(BKS):
+
+\begin{equation}
+  \text{GAP}(\%) =
+  \begin{cases}
+    \dfrac{f^* - \text{BKS}}{\text{BKS}} \times 100
+      & \text{minimización} \\[6pt]
+    \dfrac{\text{BKS} - f^*}{\text{BKS}} \times 100
+      & \text{maximización}
+  \end{cases}
+  \label{eq:gap}
+\end{equation}
+
+donde $f^*$ es el mejor valor encontrado por el algoritmo.
+Un GAP igual a 0\,\% significa que el algoritmo alcanzó exactamente el BKS;
+un GAP positivo mide cuánto peor fue la solución obtenida respecto al BKS.
+Un GAP negativo indicaría una solución mejor que el BKS registrado; no se
+observa en ninguno de los 360 experimentos.
+Cada experimento se ejecuta con 5 semillas independientes
+($s \in \{42, 123, 456, 789, 1337\}$); se reportan media y desviación
+estándar.
+Aunque cada corrida de TS es determinista una vez fijada la semilla, la
+semilla determina los componentes estocásticos del algoritmo (desempates,
+perturbaciones de reinicio y diversificación), de modo que cada semilla
+genera una corrida independiente.
+Se seleccionan 5 semillas —y no un número mayor— como equilibrio entre costo
+computacional (360 experimentos totales) y estimación de la variabilidad;
+la baja desviación estándar observada respalda esta decisión.

@@ -1,0 +1,41 @@
+% =======================================================================
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+% =======================================================================
+
+Los Problemas de Optimización Combinatoria (POC) son mayoritariamente
+\NP-duros; en la práctica se abordan con metaheurísticas. La
+Búsqueda Tabú es una de las más establecidas, y admite enriquecerse con
+mecanismos de memoria de largo plazo —lista tabú dinámica, memoria de
+frecuencia, penalización adaptativa, diversificación informada— cuya
+contribución individual rara vez se cuantifica: la literatura compara familias completas de
+metaheurísticas o propone variantes ajustadas a un único problema, pero no
+aísla qué componente interno hace el trabajo.
+
+Este trabajo cierra esa brecha con un diseño factorial completo. Se
+implementan tres configuraciones acumulativas de Búsqueda Tabú —Básica,
+Intermedia y Avanzada— y se aplican, sin re-ajustes por instancia, a cinco
+problemas de estructura heterogénea: Mochila 0/1, TSP, CVRP, Flowshop y Job
+Shop. Sobre 24 instancias de benchmarks públicos con mejor valor conocido
+documentado se ejecutan \textbf{360 experimentos} (24 instancias $\times$
+3 niveles $\times$ 5 semillas independientes), y en cada uno se mide el GAP
+porcentual respecto al BKS.
+
+La transición de la configuración Básica a la Avanzada reduce el GAP global
+promedio de \SI{6.50}{\percent} a \SI{3.40}{\percent}, una mejora del
+\SI{48}{\percent} relativo, a un costo de aproximadamente $3.9\times$ el tiempo
+de cómputo. La ganancia, sin embargo, no es uniforme: se concentra casi por
+completo en CVRP (\SI{19.22}{\percent} $\rightarrow$ \SI{6.38}{\percent}) y es
+marginal en Flowshop, donde la vecindad de intercambio adyacente apenas mejora
+la solución de la heurística constructiva NEH y los tres niveles quedan en
+torno al \SI{1.7}{\percent}. El hallazgo de mayor valor práctico apunta al primer salto de complejidad, donde se obtiene la mayor parte de la mejora: la configuración Intermedia captura 2.50 de los 3.10 puntos
+porcentuales totales.
+
+El producto principal es un repositorio público, reproducible y extensible que
+contiene las quince implementaciones, el orquestador de experimentos, modelos
+exactos de verificación y los resultados de las 360 corridas.
+
+\vspace{1.5em}
+\noindent\textbf{Palabras clave:} búsqueda tabú, CVRP, flowshop, job shop,
+metaheurísticas, mochila 0/1, optimización combinatoria, repositorio público,
+reproducibilidad, TSP.

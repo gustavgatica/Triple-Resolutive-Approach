@@ -1,0 +1,51 @@
+% -----------------------------------------------------------------------
+\section{Introducción}
+\label{sec:intro}
+
+Los Problemas de Optimización Combinatoria (POC) aparecen en áreas tan
+diversas como logística, manufactura, finanzas y planificación de recursos.
+Su complejidad computacional, mayoritariamente \NP-dura, ha impulsado el
+desarrollo de algoritmos exactos y, especialmente, de metaheurísticas capaces
+de obtener soluciones de buena calidad en tiempos
+prácticos~\cite{gendreau2010handbook,blum2003metaheuristics}.
+
+La Búsqueda Tabú (TS)~\cite{glover1986future,glover1989tabu,glover1990tabu}
+registra movimientos recientes en una lista tabú para evitar la re-visita
+de soluciones y escapar de óptimos locales, y puede enriquecerse con
+memoria de largo plazo, aspiración, reinicios y penalizaciones adaptativas.
+
+La mayoría de los estudios compara TS contra otras familias
+—algoritmos genéticos (GA)~\cite{holland1975adaptation}, recocido simulado
+(SA)~\cite{kirkpatrick1983optimization} y optimización por colonias de
+hormigas (ACO)~\cite{dorigo1996ant}— o propone variantes altamente
+especializadas para un único
+problema~\cite{cordeau2002guide,gendreau1994tabu,nowicki1996fast}.
+Como advierte Hooker~\cite{hooker1995testing}, esa comparación competitiva
+indica qué algoritmo gana, pero no qué componente explica el resultado.
+Existe una brecha metodológica: \emph{repositorios públicos que ilustren
+la progresión interna de TS} —de una configuración básica a una avanzada—
+en múltiples problemas heterogéneos, con código reproducible y métricas
+comparativas unificadas.
+
+\subsection*{Contribuciones}
+
+Las contribuciones del paper se resumen en:
+
+\begin{enumerate}
+  \item Implementación en Python de quince módulos de TS (5 problemas × 3
+    configuraciones), coherentemente estructurados y documentados en español.
+  \item Un orquestador de experimentos (\texttt{src/main.py}) que ejecuta los
+    360 experimentos de forma automatizada, guarda resultados en JSON y
+    genera tablas importables.
+  \item Análisis cuantitativo del impacto de memoria de frecuencia, lista
+    tabú dinámica y diversificación adaptativa en cinco POC clásicos.
+  \item Un repositorio público que puede ser extendido a nuevos problemas o
+    algoritmos sin modificar la infraestructura existente.
+\end{enumerate}
+
+La Sección~\ref{sec:marco} introduce los cinco problemas y los tres niveles
+de TS.
+La Sección~\ref{sec:metodologia} describe el diseño experimental y las
+instancias de prueba.
+La Sección~\ref{sec:resultados} presenta y analiza los resultados.
+La Sección~\ref{sec:conclusiones} cierra con conclusiones y trabajo futuro.

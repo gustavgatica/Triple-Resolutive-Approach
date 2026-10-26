@@ -1,0 +1,8 @@
+Problema : flowshop
+Instancia: ta011
+Algoritmo: ts_avanzado
+Valor    : 1602
+BKS      : 1582
+GAP      : 1.2642%
+
+Permutación: 17 -> 4 -> 8 -> 11 -> 16 -> 1 -> 19 -> 14 -> 9 -> 6 -> 13 -> 2 -> 5 -> 7 -> 12 -> 18 -> 10 -> 3 -> 0 -> 15

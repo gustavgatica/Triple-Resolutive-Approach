@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cartel EXPOTIC UNAB 2026 — Triple Enfoque Resolutivo</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ IMPRESIÓN: 90 x 120 cm ============ */
+  @page { size: 90cm 120cm; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  :root{
+    --red:#e0243f; --red-soft:#ff4d63;
+    --red-dim:rgba(224,36,63,0.16); --red-border:rgba(224,36,63,0.4);
+    --navy:#0d3450; --black:#05080c;
+    --card:#101823; --card2:#16202e;
+    --text:#ffffff; --muted:#93a4b5; --white-soft:#e5ecf2;
+    --sky:#6db3e8; --gold:#f2b705;
+    --line:rgba(255,255,255,0.08);
+  }
+  html,body{ width:90cm; height:120cm; }
+  body{
+    font-family:'DM Sans',Arial,sans-serif; color:var(--text);
+    background:
+      radial-gradient(60cm 35cm at 85% -5%, rgba(18,70,107,0.45), transparent 60%),
+      radial-gradient(50cm 30cm at -5% 105%, rgba(18,70,107,0.35), transparent 60%),
+      radial-gradient(45cm 25cm at 50% 8%, rgba(224,36,63,0.16), transparent 65%),
+      var(--black);
+    display:flex; flex-direction:column;
+  }
+  .mono{ font-family:'Space Mono',monospace; }
+
+  /* ============ ENCABEZADO ============ */
+  header{
+    display:flex; align-items:center; gap:1.6cm;
+    padding:1.6cm 2.2cm 1.2cm;
+    border-bottom:.05cm solid var(--line);
+  }
+  .logo-box{
+    display:flex; flex-direction:column; align-items:center; flex:0 0 auto;
+  }
+  .logo-box img{ width:7.5cm; height:auto; display:block; }
+  .head-text{ flex:1; text-align:center; }
+  .evento{
+    display:inline-block; font-family:'Space Mono',monospace;
+    font-size:1cm; font-weight:700; letter-spacing:.3cm; text-transform:uppercase;
+    color:var(--red-soft); background:var(--red-dim);
+    border:.05cm solid var(--red-border); border-radius:2cm;
+    padding:.35cm 1.6cm; margin-bottom:.7cm;
+  }
+  h1{
+    font-size:3cm; line-height:1.02; font-weight:700; letter-spacing:-0.06cm;
+  }
+  h1 em{ font-style:normal; color:var(--red-soft); text-shadow:0 0 .8cm rgba(224,36,63,.5); }
+  .subtitulo{ font-size:1.05cm; color:var(--muted); font-weight:300; margin-top:.4cm; }
+
+  /* stats del encabezado */
+  .head-stats{ display:flex; gap:1.4cm; align-items:center; flex:0 0 auto; }
+  .hstat{ text-align:center; }
+  .hstat .n{ font-family:'Space Mono',monospace; font-size:2.2cm; font-weight:700; color:var(--red-soft); display:block; line-height:1; }
+  .hstat .l{ font-size:.62cm; color:var(--muted); text-transform:uppercase; letter-spacing:.08cm; margin-top:.25cm; display:block; max-width:4.5cm; }
+  .hdiv{ width:.03cm; height:3.2cm; background:var(--line); }
+
+  /* ============ CUERPO ============ */
+  main{
+    flex:1; display:grid; grid-template-columns:1fr 1fr;
+    gap:1.1cm; padding:1.2cm 2.2cm 0;
+  }
+  .col{ display:flex; flex-direction:column; gap:1.1cm; }
+  section{
+    background:var(--card); border:.05cm solid var(--line);
+    border-radius:.6cm; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .sec-head{
+    display:flex; align-items:center; gap:.6cm;
+    padding:.7cm .9cm .55cm; border-bottom:.05cm solid var(--line);
+  }
+  .sec-num{
+    font-family:'Space Mono',monospace; font-size:1.1cm; font-weight:700;
+    color:#fff; background:var(--red); border-radius:.3cm;
+    width:1.9cm; height:1.9cm; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 .6cm rgba(224,36,63,.4);
+  }
+  section h2{
+    font-size:1.35cm; font-weight:700; letter-spacing:-0.02cm;
+  }
+  .sec-tag{
+    margin-left:auto; font-family:'Space Mono',monospace; font-size:.55cm;
+    letter-spacing:.1cm; text-transform:uppercase; color:var(--red-soft);
+  }
+  .cuerpo{ padding:.8cm .9cm; font-size:.82cm; line-height:1.42; color:var(--muted); }
+  .cuerpo b, .cuerpo strong{ color:var(--text); }
+  .cuerpo ul{ list-style:none; }
+  .cuerpo li{ margin-bottom:.45cm; padding-left:.9cm; position:relative; }
+  .cuerpo li::before{ content:"▸"; color:var(--red-soft); position:absolute; left:0; font-weight:700; }
+  .grow{ flex:1; }
+
+  /* callout */
+  .callout{
+    background:linear-gradient(135deg, rgba(224,36,63,.12), rgba(224,36,63,.04));
+    border:.05cm solid var(--red-border); border-radius:.4cm;
+    padding:.55cm .7cm; font-size:.78cm; line-height:1.45; color:var(--muted);
+    margin-top:.5cm;
+  }
+  .callout .co-lbl{
+    display:block; font-family:'Space Mono',monospace; font-size:.55cm;
+    color:var(--red-soft); letter-spacing:.08cm; text-transform:uppercase; margin-bottom:.2cm;
+  }
+  .callout strong{ color:var(--text); }
+
+  /* pills */
+  .pills{ display:flex; flex-wrap:wrap; gap:.3cm; margin-top:.4cm; }
+  .pill{
+    font-family:'Space Mono',monospace; font-size:.58cm;
+    color:var(--red-soft); background:rgba(224,36,63,.08);
+    border:.04cm solid var(--red-border); border-radius:.2cm; padding:.12cm .4cm;
+  }
+  .pill.blue{ color:var(--sky); background:rgba(109,179,232,.08); border-color:rgba(109,179,232,.35); }
+  .pill.gold{ color:var(--gold); background:rgba(242,183,5,.08); border-color:rgba(242,183,5,.35); }
+
+  /* niveles */
+  .niveles{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:.55cm; margin-top:.55cm; }
+  .nivel{
+    background:var(--card2); border:.05cm solid var(--line); border-radius:.4cm;
+    padding:.55cm .55cm; font-size:.68cm; line-height:1.35; color:var(--muted);
+  }
+  .nivel h3{ font-size:.85cm; color:var(--text); margin:.15cm 0 .25cm; }
+  .nivel .nv-tag{
+    font-family:'Space Mono',monospace; font-size:.5cm; letter-spacing:.06cm;
+    text-transform:uppercase; padding:.08cm .3cm; border-radius:.15cm; display:inline-block;
+  }
+  .nv1 .nv-tag{ color:var(--sky); background:rgba(109,179,232,.1); border:.04cm solid rgba(109,179,232,.35); }
+  .nv2 .nv-tag{ color:var(--gold); background:rgba(242,183,5,.1); border:.04cm solid rgba(242,183,5,.35); }
+  .nv3 .nv-tag{ color:var(--red-soft); background:var(--red-dim); border:.04cm solid var(--red-border); }
+  .nv3{ border-color:var(--red-border); box-shadow:0 0 .8cm rgba(224,36,63,.15); }
+
+  /* pipeline */
+  .flujo{ display:flex; align-items:stretch; margin-top:.55cm; }
+  .caja-f{
+    background:var(--card2); border:.05cm solid var(--line); border-right:none;
+    padding:.45cm .35cm; text-align:center; font-size:.62cm; font-weight:700;
+    color:var(--text); flex:1;
+  }
+  .caja-f:first-child{ border-radius:.35cm 0 0 .35cm; }
+  .caja-f small{ display:block; font-weight:400; font-family:'Space Mono',monospace; font-size:.5cm; color:var(--muted); margin-top:.15cm; }
+  .flecha{
+    display:flex; align-items:center; justify-content:center;
+    background:var(--card2); border-top:.05cm solid var(--line); border-bottom:.05cm solid var(--line);
+    color:var(--red-soft); font-size:.85cm; font-weight:700; padding:0 .18cm;
+  }
+  .caja-f:last-of-type{ border-radius:0 .35cm .35cm 0; border-right:.05cm solid var(--line); }
+
+  /* KPI / findings */
+  .metricas{ display:grid; grid-template-columns:repeat(3,1fr); gap:.55cm; margin-top:.55cm; }
+  .metrica{
+    background:var(--card2); border:.05cm solid var(--line); border-radius:.4cm;
+    text-align:center; padding:.5cm .3cm;
+  }
+  .metrica .num{
+    font-family:'Space Mono',monospace; font-size:1.5cm; font-weight:700;
+    color:var(--red-soft); text-shadow:0 0 .5cm rgba(224,36,63,.4); line-height:1.1;
+  }
+  .metrica .lbl{ font-size:.62cm; color:var(--muted); margin-top:.2cm; }
+
+  svg text{ font-family:'DM Sans',Arial,sans-serif; }
+  .chart-wrap{
+    background:var(--card2); border:.05cm solid var(--line); border-radius:.4cm;
+    padding:.5cm .5cm .2cm; margin-top:.4cm;
+  }
+
+  /* ============ PIE ============ */
+  footer{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1cm 2.2cm 1.4cm; margin-top:1.1cm;
+    border-top:.05cm solid var(--line); font-size:.9cm; line-height:1.55;
+    color:var(--muted);
+  }
+  footer b{ color:var(--text); }
+  footer .rol{ font-family:'Space Mono',monospace; font-size:.55cm; color:var(--red-soft); text-transform:uppercase; letter-spacing:.08cm; }
+  .qr{
+    background:#fff; border-radius:.3cm; width:4.2cm; height:4.2cm;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--navy); font-size:.55cm; text-align:center; font-weight:700;
+    font-family:'Space Mono',monospace;
+  }
+  .barra-inferior{ height:.35cm; background:linear-gradient(90deg, var(--red), #701221); box-shadow:0 0 .6cm rgba(224,36,63,.5); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-box">
+    <img src="logo_unab.png" alt="Logo Universidad Andrés Bello" />
+  </div>
+  <div class="head-text">
+    <div class="evento">Expotic UNAB 2026</div>
+    <h1>Triple Enfoque <em>Resolutivo</em></h1>
+    <div class="subtitulo">Un repositorio de cinco problemas de optimización combinatoria
+      con soluciones exactas y metaheurísticas</div>
+  </div>
+  <div class="head-stats">
+    <div class="hstat"><span class="n">5</span><span class="l">problemas NP-duros</span></div>
+    <div class="hdiv"></div>
+    <div class="hstat"><span class="n">3</span><span class="l">niveles de Búsqueda Tabú</span></div>
+    <div class="hdiv"></div>
+    <div class="hstat"><span class="n">360</span><span class="l">experimentos</span></div>
+  </div>
+</header>
+
+<main>
+  <!-- ================= COLUMNA IZQUIERDA ================= -->
+  <div class="col">
+
+    <section>
+      <div class="sec-head"><div class="sec-num">1</div><h2>Introducción</h2><span class="sec-tag">Contexto</span></div>
+      <div class="cuerpo">
+        <ul>
+          <li><b>Contexto:</b> los problemas de optimización combinatoria (NP-duros)
+            aparecen en logística, manufactura y planificación; los métodos exactos no
+            escalan y se recurre a <b>metaheurísticas</b> como la Búsqueda Tabú (TS).</li>
+          <li><b>Justificación:</b> la literatura compara TS contra otras familias
+            (GA, SA, ACO), pero <b>no existen repositorios públicos</b> que muestren la
+            progresión interna de TS —de básica a avanzada— sobre varios problemas
+            heterogéneos, con código reproducible y métricas unificadas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><div class="sec-num">2</div><h2>Objetivos</h2><span class="sec-tag">Propósito</span></div>
+      <div class="cuerpo">
+        <div class="callout" style="margin-top:0">
+          <span class="co-lbl">Objetivo general</span>
+          Construir y validar un <strong>repositorio reproducible</strong> que cuantifique
+          el aporte incremental de cada mecanismo de Búsqueda Tabú en cinco problemas
+          clásicos de optimización combinatoria.
+        </div>
+        <ul style="margin-top:.55cm">
+          <li>Implementar <b>15 módulos de TS</b> (5 problemas × 3 configuraciones) en Python.</li>
+          <li>Automatizar <b>360 experimentos</b> sobre benchmarks estándar.</li>
+          <li>Medir el <b>GAP frente al BKS</b> con 5 semillas independientes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><div class="sec-num">3</div><h2>Metodología</h2><span class="sec-tag">Cómo</span></div>
+      <div class="cuerpo">
+        <ul>
+          <li><b>Enfoque experimental-cuantitativo:</b> comparación de 3 niveles de TS en
+            Knapsack 0/1, TSP, CVRP, Flowshop y Job Shop (24 instancias benchmark).</li>
+          <li><b>Métrica GAP (%):</b> distancia porcentual al mejor valor conocido;
+            media ± σ sobre 5 semillas.</li>
+        </ul>
+        <div class="pills">
+          <span class="pill">Python</span><span class="pill">Git</span>
+          <span class="pill gold">AMPL</span><span class="pill gold">Jupyter</span>
+          <span class="pill blue">TSPLIB</span><span class="pill blue">Pisinger</span>
+          <span class="pill blue">Taillard</span><span class="pill blue">OR-Library</span>
+        </div>
+        <div class="niveles">
+          <div class="nivel nv1"><span class="nv-tag">Nivel 1</span>
+            <h3>TS-Básico</h3>Lista tabú fija · vecindario simple</div>
+          <div class="nivel nv2"><span class="nv-tag">Nivel 2 · + añade</span>
+            <h3>TS-Intermedio</h3>Lista dinámica · aspiración · reinicio suave</div>
+          <div class="nivel nv3"><span class="nv-tag">Nivel 3 · + añade</span>
+            <h3>TS-Avanzado</h3>Memoria de frecuencia · penalización adaptativa · diversificación</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grow">
+      <div class="sec-head"><div class="sec-num">4</div><h2>Desarrollo / Propuesta</h2><span class="sec-tag">Arquitectura</span></div>
+      <div class="cuerpo">
+        <p><b>Arquitectura del repositorio:</b> el orquestador carga las instancias, ejecuta
+        los 15 módulos de TS con interfaz uniforme <b>solve() → {valor, solución, historial}</b>
+        y persiste los resultados, desde los cuales se generan métricas, tablas y figuras.</p>
+        <div class="flujo">
+          <div class="caja-f">instances/<small>24 benchmarks</small></div>
+          <div class="flecha">→</div>
+          <div class="caja-f">src/<small>orquestador</small></div>
+          <div class="flecha">→</div>
+          <div class="caja-f">tabu_search/<small>15 módulos TS</small></div>
+          <div class="flecha">→</div>
+          <div class="caja-f">output/<small>JSON + CSV</small></div>
+          <div class="flecha">→</div>
+          <div class="caja-f">paper/<small>tablas y figuras</small></div>
+        </div>
+        <div class="metricas">
+          <div class="metrica"><div class="num">15</div><div class="lbl">módulos con interfaz uniforme</div></div>
+          <div class="metrica"><div class="num">5</div><div class="lbl">heurísticas constructivas iniciales</div></div>
+          <div class="metrica"><div class="num">100%</div><div class="lbl">reproducible: semillas fijas + código abierto</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= COLUMNA DERECHA ================= -->
+  <div class="col">
+
+    <section>
+      <div class="sec-head"><div class="sec-num">5</div><h2>Resultados</h2><span class="sec-tag">Validación</span></div>
+      <div class="cuerpo">
+        <p><b>GAP promedio (%) frente al BKS</b> por problema y nivel de TS (media de 5 semillas):</p>
+
+        <div class="chart-wrap">
+        <svg viewBox="0 0 1000 560" style="width:100%">
+          <!-- gridlines + labels eje Y -->
+          <g font-size="26" fill="#93a4b5" text-anchor="end" font-family="'Space Mono',monospace">
+            <text x="60" y="478">0</text>
+            <text x="60" y="366">5</text><line x1="70" y1="358" x2="980" y2="358" stroke="rgba(255,255,255,0.07)"/>
+            <text x="60" y="254">10</text><line x1="70" y1="246" x2="980" y2="246" stroke="rgba(255,255,255,0.07)"/>
+            <text x="60" y="142">15</text><line x1="70" y1="134" x2="980" y2="134" stroke="rgba(255,255,255,0.07)"/>
+            <text x="60" y="30">20</text><line x1="70" y1="22" x2="980" y2="22" stroke="rgba(255,255,255,0.07)"/>
+          </g>
+          <line x1="70" y1="470" x2="980" y2="470" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+          <!-- escala 22.4 px por 1% ; y = 470 - h -->
+          <g><!-- Knapsack 0.22/0.13/0.10 -->
+            <rect x="100" y="465.1" width="38" height="4.9" fill="#6db3e8"/>
+            <rect x="142" y="467.1" width="38" height="2.9" fill="#f2b705"/>
+            <rect x="184" y="467.8" width="38" height="2.2" fill="#e0243f"/>
+            <text x="161" y="510" font-size="28" fill="#e5ecf2" text-anchor="middle" font-weight="600">Knapsack</text>
+            <text x="161" y="545" font-size="26" fill="#ff4d63" text-anchor="middle" font-weight="700" font-family="'Space Mono',monospace">0.22→0.10</text>
+          </g>
+          <g><!-- TSP 2.42/2.15/1.22 -->
+            <rect x="280" y="415.8" width="38" height="54.2" fill="#6db3e8"/>
+            <rect x="322" y="421.8" width="38" height="48.2" fill="#f2b705"/>
+            <rect x="364" y="442.7" width="38" height="27.3" fill="#e0243f"/>
+            <text x="341" y="510" font-size="28" fill="#e5ecf2" text-anchor="middle" font-weight="600">TSP</text>
+            <text x="341" y="545" font-size="26" fill="#ff4d63" text-anchor="middle" font-weight="700" font-family="'Space Mono',monospace">2.42→1.22</text>
+          </g>
+          <g><!-- CVRP 19.22/7.72/6.38 -->
+            <rect x="460" y="39.5" width="38" height="430.5" fill="#6db3e8"/>
+            <rect x="502" y="297.1" width="38" height="172.9" fill="#f2b705"/>
+            <rect x="544" y="327.1" width="38" height="142.9" fill="#e0243f"/>
+            <text x="521" y="510" font-size="28" fill="#e5ecf2" text-anchor="middle" font-weight="600">CVRP</text>
+            <text x="521" y="545" font-size="26" fill="#ff4d63" text-anchor="middle" font-weight="700" font-family="'Space Mono',monospace">19.22→6.38</text>
+          </g>
+          <g><!-- Flowshop 1.74/1.74/1.75 -->
+            <rect x="640" y="431.1" width="38" height="38.9" fill="#6db3e8"/>
+            <rect x="682" y="430.9" width="38" height="39.1" fill="#f2b705"/>
+            <rect x="724" y="430.8" width="38" height="39.2" fill="#e0243f"/>
+            <text x="701" y="510" font-size="28" fill="#e5ecf2" text-anchor="middle" font-weight="600">Flowshop</text>
+            <text x="701" y="545" font-size="26" fill="#ff4d63" text-anchor="middle" font-weight="700" font-family="'Space Mono',monospace">1.74→1.75</text>
+          </g>
+          <g><!-- Job Shop 8.89/8.24/7.52 -->
+            <rect x="820" y="270.9" width="38" height="199.1" fill="#6db3e8"/>
+            <rect x="862" y="285.4" width="38" height="184.6" fill="#f2b705"/>
+            <rect x="904" y="301.6" width="38" height="168.4" fill="#e0243f"/>
+            <text x="881" y="510" font-size="28" fill="#e5ecf2" text-anchor="middle" font-weight="600">Job Shop</text>
+            <text x="881" y="545" font-size="26" fill="#ff4d63" text-anchor="middle" font-weight="700" font-family="'Space Mono',monospace">8.89→7.52</text>
+          </g>
+          <!-- leyenda -->
+          <g font-size="26" fill="#e5ecf2">
+            <rect x="620" y="30" width="30" height="30" rx="6" fill="#6db3e8"/><text x="662" y="53">Básico</text>
+            <rect x="620" y="70" width="30" height="30" rx="6" fill="#f2b705"/><text x="662" y="93">Intermedio</text>
+            <rect x="620" y="110" width="30" height="30" rx="6" fill="#e0243f"/><text x="662" y="133">Avanzado</text>
+          </g>
+        </svg>
+        </div>
+
+        <div class="metricas" style="grid-template-columns:repeat(2,1fr)">
+          <div class="metrica"><div class="num">6.50% → 3.40%</div>
+            <div class="lbl">GAP global: TS-Básico → TS-Avanzado (−48% relativo)</div></div>
+          <div class="metrica"><div class="num">3.9×</div>
+            <div class="lbl">costo en tiempo de TS-Avanzado vs. Básico</div></div>
+        </div>
+
+        <ul style="margin-top:.55cm">
+          <li><b>Validación:</b> 5 semillas independientes por experimento (baja desviación σ);
+            resultados contrastados contra BKS publicados de cada benchmark.</li>
+          <li>En Flowshop, los tres niveles <b>rinden igual</b> (≈ 1.7%): la vecindad de
+            intercambio adyacente es el límite.</li>
+          <li>En TSP, la perturbación <b>double-bridge</b> reduce el GAP de kroA100
+            de 2.99% a 0.76%.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grow">
+      <div class="sec-head"><div class="sec-num">6</div><h2>Conclusiones</h2><span class="sec-tag">Aportes</span></div>
+      <div class="cuerpo">
+        <ul>
+          <li><b>Aporte principal:</b> la memoria de frecuencia y la penalización adaptativa
+            son los mecanismos de mayor impacto global (CVRP: −67% de GAP relativo).</li>
+          <li>La arquitectura progresiva permite <b>aislar y cuantificar</b> el aporte de cada
+            mecanismo metaheurístico; el código abierto facilita replicación y extensión.</li>
+        </ul>
+        <div class="callout">
+          <span class="co-lbl">Proyección</span>
+          Modelos exactos (MILP) como cotas · cuarta configuración <strong>TS poblacional</strong> ·
+          instancias de mayor escala (TSP 500+, CVRP 500+) · nuevos problemas:
+          coloración de grafos y mochila multidimensional.
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <div class="rol">Autor</div>
+    <div><b>Benjamín Peña Díaz</b></div>
+    <div class="rol" style="margin-top:.3cm">Profesor Guía</div>
+    <div><b>Gustavo Gatica</b></div>
+  </div>
+  <div style="text-align:center">
+    <div class="rol">Carrera</div>
+    <div><b>Ingeniería Civil Informática</b></div>
+    <div style="font-size:.7cm;margin-top:.3cm">Facultad de Ingeniería · Universidad Andrés Bello · Santiago de Chile</div>
+  </div>
+  <div class="qr">QR<br>repositorio<br>(opcional)</div>
+</footer>
+<div class="barra-inferior"></div>
+
+</body>
+</html>

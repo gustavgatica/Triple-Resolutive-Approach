@@ -1,0 +1,8 @@
+Problema : jobshop
+Instancia: la11
+Algoritmo: ts_avanzado
+Valor    : 1222
+BKS      : 1222
+GAP      : 0.0000%
+
+Permutación: 5 -> 15 -> 13 -> 4 -> 14 -> 19 -> 0 -> 10 -> 12 -> 6 -> 9 -> 17 -> 18 -> 3 -> 8 -> 11 -> 2 -> 16 -> 1 -> 7

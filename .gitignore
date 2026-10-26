@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# LaTeX — artefactos de compilación
+# Los PDF finales (paper/main.pdf, EXPOTIC/*.pdf) SÍ se versionan: son
+# dependencias de TESIS/tesis.tex vía \includepdf y sin ellos el documento
+# no compila desde un clon limpio.
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.lol
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# El PDF de la tesis se genera con TESIS/compilar.bat (o compilar.sh).
+# No se versiona: main.pdf y el afiche sí, porque son insumos, no salidas.
+TESIS/tesis.pdf
+
+# Copia de trabajo del paper (la que se envia por correo). El insumo real de
+# la tesis es paper/main.pdf; este duplicado es una salida, no se versiona.
+paper/main_latest_version.pdf
+
+# macOS
+.DS_Store

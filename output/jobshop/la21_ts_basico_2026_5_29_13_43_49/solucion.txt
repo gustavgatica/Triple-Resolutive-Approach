@@ -1,0 +1,1 @@
+la21 ts_basico valor=1231 GAP=17.6864%

@@ -1,0 +1,1 @@
+la11 ts_avanzado valor=1222 GAP=0.0000%

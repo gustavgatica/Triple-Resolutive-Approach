@@ -1,0 +1,48 @@
+% =======================================================================
+\chapter{Paper}
+\label{cap:paper}
+% =======================================================================
+
+Este capítulo reproduce íntegramente el artículo \emph{Triple Enfoque
+Resolutivo: Un Repositorio de Cinco Problemas de Optimización Combinatoria
+con Soluciones Exactas y Metaheurísticas}, en formato IEEE de conferencia.
+
+El artículo se incluye tal como fue compilado, sin re-maquetación, para
+preservar el formato de publicación. Contiene el marco teórico completo de
+los cinco problemas y los tres niveles de Búsqueda Tabú, el diseño
+experimental formal, los resultados desagregados por problema con sus tablas
+y curvas de convergencia, y las conclusiones del estudio.
+
+\begin{table}[H]
+\centering
+\caption{Contenido del artículo incluido}
+\label{tab:contenido_paper}
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Sección} & \textbf{Contenido} \\
+\midrule
+Resumen        & Síntesis y resultados principales \\
+Introducción   & Contexto, brecha metodológica y contribuciones \\
+Marco teórico  & Los cinco problemas y los tres niveles de TS, con
+                 pseudocódigo \\
+Diseño experimental & Estructura del repositorio, instancias, métricas \\
+Resultados     & Análisis por problema y análisis global \\
+Conclusiones   & Hallazgos de implementación y trabajo futuro \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vfill
+\noindent\textbf{Fuente:} \texttt{paper/main.pdf} del repositorio.
+Para recompilarlo:
+\texttt{cd paper \&\& pdflatex main.tex \&\& bibtex main \&\& pdflatex main.tex}.
+
+\cleardoublepage
+
+% --- Artículo completo, 9 páginas ---
+\includepdf[pages=-,
+            frame=false,
+            scale=0.92,
+            pagecommand={\thispagestyle{plain}}]%
+           {../paper/main.pdf}

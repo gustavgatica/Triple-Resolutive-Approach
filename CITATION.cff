@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Si usas este repositorio, por favor cítalo así."
+title: "Triple Enfoque Resolutivo: un repositorio de cinco problemas de optimización combinatoria con soluciones exactas y metaheurísticas"
+type: software
+license: MIT
+date-released: 2026-10-26
+authors:
+  - family-names: "Peña Díaz"
+    given-names: "Benjamín"
+    affiliation: "Universidad Andrés Bello"
+  - family-names: "Gatica"
+    given-names: "Gustavo"
+    affiliation: "Universidad Andrés Bello"
+  - family-names: "Linfati"
+    given-names: "Rodrigo"
+    affiliation: "Universidad del Bío-Bío"
+keywords:
+  - tabu search
+  - combinatorial optimization
+  - metaheuristics
+  - reproducible research

@@ -1,0 +1,6 @@
+Problema,TS-Básico_GAP%,TS-Intermedio_GAP%,TS-Avanzado_GAP%
+CVRP,+19.2225,+7.7250,+6.5425
+Flowshop,+0.3700,+0.3340,+0.1700
+Job Shop,+10.2420,+8.7480,+8.2700
+Knapsack (0-1),+0.2180,+0.1020,+0.1020
+TSP,+2.4160,+2.2680,+1.3880

@@ -1,0 +1,57 @@
+% -----------------------------------------------------------------------
+\section{Conclusiones y Trabajo Futuro}
+\label{sec:conclusiones}
+
+Se presentó un repositorio reproducible con 15 implementaciones de
+Búsqueda Tabú (tres niveles) sobre cinco problemas clásicos de optimización
+combinatoria, con experimentación automatizada.
+
+\subsection*{Puntos de interés a nivel de implementación}
+
+\begin{enumerate}
+  \item \textbf{La progresión de niveles reduce el GAP global cerca de la
+    mitad.}
+    La transición de TS-Básico a TS-Avanzado reduce el GAP global de
+    \SI{6.50}{\percent} a \SI{3.40}{\percent}, siendo CVRP el problema
+    más beneficiado (reducción del \SI{67}{\percent} relativo).
+
+  \item \textbf{El primer salto de complejidad concentra la mayor parte de
+    la mejora.}
+    TS-Intermedio reduce el GAP en 2.50\,pp respecto a
+    TS-Básico, y TS-Avanzado reduce adicionalmente 0.60\,pp respecto a TS-Intermedio gracias a los mecanismos de largo plazo.
+
+  \item \textbf{La perturbación informada es crítica en TSP.}
+    El reinicio \emph{double-bridge} (4-opt) en TS-Avanzado es responsable
+    de la mayor mejora individual observada: \SI{2.21}{\percent} de
+    reducción en \texttt{kroA100}.
+
+  \item \textbf{En Flowshop los tres niveles rinden de forma similar.}
+    La heurística constructiva NEH entrega una solución inicial de buena
+    calidad y los tres niveles de TS la mejoran poco (GAP medio entre
+    \SI{1.74}{\percent} y \SI{1.75}{\percent}); el rendimiento en este
+    problema está limitado por la vecindad de swap adyacente.
+
+  \item \textbf{Job Shop es el problema más difícil del conjunto.}
+    Los GAPs elevados en \texttt{la21} y \texttt{ft10} confirman la
+    dificultad inherente del problema y la necesidad de vecindades más
+    ricas (e.g., movimientos en el grafo de disyunción~\cite{balas1998one}).
+\end{enumerate}
+
+\subsection*{Trabajo futuro}
+
+\begin{itemize}
+  \item Incorporar modelos exactos (MILP) para las instancias de menor
+    tamaño y comparar con los cotas inferiores.
+  \item Implementar una cuarta configuración con TS poblacional
+    (búsqueda tabú de trayectorias paralelas).
+  \item Añadir instancias de mayor escala (e.g., TSP con 500+ ciudades,
+    CVRP con 500+ clientes) y medir el escalado del GAP.
+  \item Extender el repositorio a otros problemas como el de coloración
+    de grafos o la mochila multidimensional.
+  \item Automatizar la generación de figuras desde los cuadernos Jupyter
+    e integrarlas directamente al PDF del artículo mediante \texttt{latexmk}.
+\end{itemize}
+
+En conclusión, la arquitectura progresiva de TS aquí validada permite
+comprender el impacto incremental de cada mecanismo metaheurístico, y el
+código publicado facilita su reproducción y extensión.

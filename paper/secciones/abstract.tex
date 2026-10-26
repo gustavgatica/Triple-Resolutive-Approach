@@ -1,0 +1,25 @@
+\begin{abstract}
+Se abordan cinco problemas clásicos de optimización combinatoria:
+la mochila 0/1 (\textit{Knapsack}), el problema del viajante (\textit{TSP}),
+el ruteo de vehículos con capacidad (\textit{CVRP}), la planificación de
+flujo en taller (\textit{Permutation Flowshop Scheduling}) y la planificación
+en taller de trabajos (\textit{Job Shop Scheduling}).
+Para cada problema se implementan tres configuraciones progresivas de Búsqueda
+Tabú (\textit{TS}): básica (lista tabú fija), intermedia (lista dinámica con
+aspiración y reinicio suave) y avanzada (memoria de frecuencia, penalización
+adaptativa y diversificación informada).
+Los 360 experimentos realizados sobre benchmarks clásicos (TSPLIB, Pisinger, Taillard) muestran que
+TS-Avanzado reduce el GAP global promedio respecto al mejor conocido (BKS)
+de \SI{6.50}{\percent} (básica) a \SI{3.40}{\percent}, con mejoras
+especialmente notorias en CVRP (\SI{19.22}{\percent}~→~\SI{6.38}{\percent})
+y TSP (\SI{2.42}{\percent}~→~\SI{1.22}{\percent}).
+Cada configuración se ejecutó con 5 semillas independientes para validar la estabilidad de los resultados.
+El repositorio incluye cargadores de instancias, modelos exactos de
+referencia, un orquestador de experimentos y generadores de tablas LaTeX,
+para facilitar la replicación y extensión de los resultados.
+\end{abstract}
+
+\begin{IEEEkeywords}
+búsqueda tabú, CVRP, flowshop, git, job shop, metaheurísticas,
+mochila 0/1, optimización combinatoria, repositorio reproducible, TSP, TSPLIB.
+\end{IEEEkeywords}

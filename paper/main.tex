@@ -1,0 +1,98 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+%% --- Paquetes ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{amsmath,amssymb}
+
+%% Comandos propios
+\newcommand{\NP}{\ensuremath{\mathcal{NP}}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%% Entrada/salida de los algoritmos (corrección revisión 25-09-26)
+\algrenewcommand\algorithmicrequire{\textbf{Entrada:}}
+\algrenewcommand\algorithmicensure{\textbf{Salida:}}
+\usepackage{cite}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{babel,positioning,shapes.geometric,shapes.multipart,arrows.meta}
+
+%% Ruta de figuras
+\graphicspath{{figuras/}}
+
+%% Tabla: alinear números
+\sisetup{round-mode=places, round-precision=2}
+
+%% --- Ajustes de espaciado ---
+% Comprime el espacio vertical alrededor de flotantes (tablas/figuras)
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+% Comprime el espacio antes/después de ecuaciones
+\setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\abovedisplayshortskip}{2pt plus 1pt}
+\setlength{\belowdisplayshortskip}{4pt plus 1pt minus 1pt}
+% Comprime listas (itemize/enumerate) del marco teórico
+\usepackage{enumitem}
+\setlist{itemsep=1pt, topsep=3pt, parsep=0pt}
+% Ajuste de interlineado en algoritmos
+\usepackage{setspace}
+
+% -----------------------------------------------------------------------
+\begin{document}
+
+\title{Triple Enfoque Resolutivo: Un Repositorio de Cinco Problemas de
+       Optimización Combinatoria con Soluciones Exactas y Metaheurísticas}
+
+\author{%
+  \IEEEauthorblockN{Benjamín Peña Díaz}
+  \IEEEauthorblockA{\textit{Escuela de Ingeniería Informática}\\
+    \textit{Universidad Andrés Bello}\\
+    Santiago, Chile\\
+    benja.diaz.2911@gmail.com}
+  \and
+  \IEEEauthorblockN{Gustavo Gatica}
+  \IEEEauthorblockA{\textit{Escuela de Ingeniería Informática}\\
+    \textit{Universidad Andrés Bello}\\
+    Santiago, Chile\\
+    ggatica@unab.cl}
+  \and
+  \IEEEauthorblockN{Rodrigo Linfati}
+  \IEEEauthorblockA{\textit{Departamento de Ingeniería Industrial}\\
+    \textit{Universidad del Bío-Bío}\\
+    Concepción, Chile\\
+    rlinfati@ubiobio.cl}
+}
+
+\maketitle
+
+%% Números de página (corrección revisión 02-07-26)
+\thispagestyle{plain}
+\pagestyle{plain}
+
+% -----------------------------------------------------------------------
+\input{secciones/abstract}
+\input{secciones/introduccion}
+\input{secciones/marco_teorico}
+\input{secciones/metodologia}
+\input{secciones/resultados}
+\input{secciones/conclusiones}
+
+% -----------------------------------------------------------------------
+% Balanceo de columnas en última página
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+
+\end{document}
+

@@ -1,0 +1,53 @@
+% =======================================================================
+\chapter{Afiche EXPOTIC}
+\label{cap:afiche}
+% =======================================================================
+
+El trabajo fue presentado en formato de póster académico en \textbf{EXPOTIC
+UNAB 2026}, la muestra de proyectos de la Escuela de Ingeniería Informática
+de la Universidad Andrés Bello.
+
+El afiche condensa en una página el planteamiento del problema, la
+arquitectura del repositorio, los tres niveles de Búsqueda Tabú y los
+resultados principales de los 360 experimentos. Su función es distinta a la
+del artículo: mientras el paper argumenta, el póster comunica: prioriza la
+lectura rápida y el impacto visual sobre el detalle metodológico.
+
+\begin{table}[H]
+\centering
+\caption{Ficha del afiche}
+\label{tab:ficha_afiche}
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Título} & Póster académico EXPOTIC UNAB 2026 \\
+\textbf{Autor} & Benjamín Peña Díaz \\
+\textbf{Instancia} & EXPOTIC, Universidad Andrés Bello, 2026 \\
+\textbf{Formato} & A4 vertical, una página \\
+\textbf{Archivo} & \texttt{EXPOTIC/afiche-triple-enfoque-resolutivo.pdf} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La carpeta \texttt{EXPOTIC/} del repositorio contiene además el material
+complementario de la presentación: la versión fuente del afiche
+(\texttt{afiche/afiche.html}), el artículo en formato de la plantilla del
+evento (\texttt{articulo/}) y la presentación de apoyo
+(\texttt{presentation\_EN.pptx} y su versión en PDF).
+
+El afiche se reproduce tal como se presentó en el evento. Sus cifras de
+Flowshop y de GAP global corresponden a una versión anterior de los
+experimentos; los valores vigentes, obtenidos con las instancias de Taillard
+regeneradas desde sus semillas publicadas, son los que se reportan en el
+resto de este documento.
+
+\cleardoublepage
+
+% --- Afiche, 1 página A4 ---
+% Se usa \thispagestyle{empty}: el afiche tiene fondo oscuro a sangre y el
+% número de página quedaría ilegible sobre él.
+\includepdf[pages=-,
+            fitpaper=false,
+            scale=0.94,
+            pagecommand={\thispagestyle{empty}}]%
+           {../EXPOTIC/afiche-triple-enfoque-resolutivo.pdf}

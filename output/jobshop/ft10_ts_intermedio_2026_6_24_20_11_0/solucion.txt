@@ -1,0 +1,8 @@
+Problema : jobshop
+Instancia: ft10
+Algoritmo: ts_intermedio
+Valor    : 1125
+BKS      : 930
+GAP      : 20.9677%
+
+Permutación: 6 -> 1 -> 5 -> 8 -> 3 -> 4 -> 2 -> 9 -> 7 -> 0

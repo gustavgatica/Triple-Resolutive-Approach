@@ -1,0 +1,9 @@
+Problema : knapsack
+Instancia: knapPI_13
+Algoritmo: ts_intermedio
+Valor    : 3468
+BKS      : 3468
+GAP      : 0.0000%
+
+Items seleccionados (49/100): [0, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 16, 18, 19, 24, 27, 28, 30, 31, 36, 37, 38, 41, 42, 45, 48, 51, 52, 53, 55, 57, 59, 60, 63, 65, 66, 68, 71, 78, 79, 81, 82, 85, 90, 92, 93, 94, 95, 97]
+Peso total: 2480 / 2500
