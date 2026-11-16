@@ -3,19 +3,27 @@ message: "Si usas este repositorio, por favor cítalo así."
 title: "Triple Enfoque Resolutivo: un repositorio de cinco problemas de optimización combinatoria con soluciones exactas y metaheurísticas"
 type: software
 license: MIT
+doi: "10.60483/UNAB/HYCFL7"
 date-released: 2026-10-26
 authors:
   - family-names: "Peña Díaz"
     given-names: "Benjamín"
     affiliation: "Universidad Andrés Bello"
+    orcid: "https://orcid.org/0009-0000-0370-1505"
   - family-names: "Gatica"
     given-names: "Gustavo"
     affiliation: "Universidad Andrés Bello"
+    orcid: "https://orcid.org/0000-0002-1816-6856"
   - family-names: "Linfati"
     given-names: "Rodrigo"
     affiliation: "Universidad del Bío-Bío"
+    orcid: "https://orcid.org/0000-0002-7659-383X"
 keywords:
   - tabu search
   - combinatorial optimization
   - metaheuristics
   - reproducible research
+identifiers:
+  - type: doi
+    value: "10.60483/UNAB/HYCFL7"
+    description: "Dataset en el Repositorio de Datos de Investigación UNAB"

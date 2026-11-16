@@ -6,6 +6,8 @@
 
 Proyecto de título de Ingeniería Civil Informática, Universidad Andrés Bello, Santiago, Chile, 2026.
 
+**Dataset:** [doi:10.60483/UNAB/HYCFL7](https://doi.org/10.60483/UNAB/HYCFL7), en el Repositorio de Datos de Investigación UNAB (instancias, código, resultados y tesis).
+
 > **English summary.** This repository implements three progressive Tabu Search configurations (basic, intermediate and advanced) for five classical combinatorial optimization problems: 0/1 knapsack, TSP, CVRP, permutation flowshop and job shop. It includes the 24 benchmark instances, exact reference models, an experiment orchestrator and the raw results of the 360 runs (24 instances × 3 configurations × 5 seeds). On average, the advanced configuration lowers the gap to the best-known solution from 6.50 % to 3.40 %, at about 3.9 times the computing time.
 
 ---
@@ -216,6 +218,15 @@ O bien, subir la carpeta `paper/` a [Overleaf](https://overleaf.com).
 Peña Díaz, B., Gatica, G. y Linfati, R. (2026). Triple Enfoque Resolutivo: un
 repositorio de cinco problemas de optimización combinatoria con soluciones exactas
 y metaheurísticas. Proyecto de título, Universidad Andrés Bello, Santiago, Chile.
+```
+
+Para citar el dataset (Repositorio de Datos de Investigación UNAB):
+
+```
+Peña Díaz, B., Gatica González, G. E. y Linfati, R. (2026). Conjunto de datos, código
+y resultados del Triple Enfoque Resolutivo: Búsqueda Tabú básica, intermedia y avanzada
+en cinco problemas de optimización combinatoria [Conjunto de datos]. Repositorio de Datos
+de Investigación, Universidad Andrés Bello. https://doi.org/10.60483/UNAB/HYCFL7
 ```
 
 También hay un archivo `CITATION.cff`, que GitHub muestra en el botón «Cite this repository».
