@@ -2,7 +2,7 @@
 
 **Un Repositorio de Cinco Problemas de Optimización Combinatoria con Soluciones Exactas y Metaheurísticas**
 
-**Autores:** Benjamín Peña Díaz (Universidad Andrés Bello) · Gustavo Gatica, profesor guía (Universidad Andrés Bello) · Rodrigo Linfati, profesor co-guía (Universidad del Bío-Bío)
+**Autores:** Benjamín Peña Díaz (Universidad Andrés Bello) · Gustavo Gatica, profesor guía (Universidad Andrés Bello) · Pablo Ormeno (Universidad Andrés Bello) · Daniel Aguayo (Universidad Andrés Bello) · Jairo Coronado (Universidad de la Costa) · Rodrigo Linfati, profesor co-guía (Universidad del Bío-Bío)
 
 Proyecto de título de Ingeniería Civil Informática, Universidad Andrés Bello, Santiago, Chile, 2026.
 
@@ -223,10 +223,11 @@ y metaheurísticas. Proyecto de título, Universidad Andrés Bello, Santiago, Ch
 Para citar el dataset (Repositorio de Datos de Investigación UNAB):
 
 ```
-Peña Díaz, B., Gatica González, G. E. y Linfati, R. (2026). Conjunto de datos, código
-y resultados del Triple Enfoque Resolutivo: Búsqueda Tabú básica, intermedia y avanzada
-en cinco problemas de optimización combinatoria [Conjunto de datos]. Repositorio de Datos
-de Investigación, Universidad Andrés Bello. https://doi.org/10.60483/UNAB/HYCFL7
+Peña Díaz, B., Gatica, G., Ormeno, P., Aguayo, D., Coronado, J. y Linfati, R. (2026).
+Conjunto de datos, código y resultados del Triple Enfoque Resolutivo: Búsqueda Tabú
+básica, intermedia y avanzada en cinco problemas de optimización combinatoria [Conjunto
+de datos]. Repositorio de Datos de Investigación, Universidad Andrés Bello.
+https://doi.org/10.60483/UNAB/HYCFL7
 ```
 
 También hay un archivo `CITATION.cff`, que GitHub muestra en el botón «Cite this repository».
